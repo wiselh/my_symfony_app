@@ -5,16 +5,14 @@ namespace ProductBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
-class DefaultController extends Controller
+class MyController extends Controller
 {
     /**
-     * @Route("/test",name="homepage")
+     * @Route("/test2",name="homepage2")
      */
     public function indexAction()
     {
-//        die("It works so fine !!");
-
-        return $this->render('@Product/Default/index.html.twig');
-
+        die("It works 2 !!");
+//        return $this->render('Default/index.html.twig');
     }
 }
