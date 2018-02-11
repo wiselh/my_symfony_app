@@ -1,7 +1,4 @@
 product:
-    resource: "@ProductBundle/Resources/config/routing.yml"
+    resource: '@ProductBundle/Controller/'
     prefix:   /
-
-app:
-    resource: '@AppBundle/Controller/'
     type: annotation
