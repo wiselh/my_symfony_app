@@ -1,1 +1,29 @@
-Heyyyy
+<!Doctype html>
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<h1>My Products Page</h1>
+
+<table class="table table-responsive table-bordered table-hover" width="500">
+    <thead>
+        <th>Name</th>
+        <th class="active">Price</th>
+        <th>Description</th>
+    </thead>
+    <tbody>
+    {% for item in products %}
+        <tr>
+            <td>{{ item.name }}</td>
+            <td  class="active">{{ item.price }}</td>
+            <td>{{ item.description }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+
+</table>
+
+
+</body>
+</html>
