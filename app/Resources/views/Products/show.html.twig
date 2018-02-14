@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+<body>
+<h1>My Products Page</h1>
+<table class="table table-responsive table-bordered table-hover" width="500px">
+    <thead>
+    <th>Name</th>
+    <th class="active">Price</th>
+    <th>Description</th>
+    <th>Edit Product</th>
+    <th>Delete Product</th>
+    </thead>
+    <tbody>
+    <form action="store" method="post" name="myform">
+    <tr class="form-group">
+        <td> <input type="text" name="name" id="" class="form-control"></td>
+        <td><input type="text" name="price" id="" class="form-control"></td>
+        <td><input type="text" name="description" id="" class="form-control"></td>
+        <td colspan="2"><input type="submit" name="submit" id="" class="btn btn-success"></td>
+    </tr>
+    </form>
+    {% for item in products %}
+        <tr>
+            <td>{{ item.name }}</td>
+            <td  class="active">{{ item.price }}</td>
+            <td>{{ item.description }}</td>
+            <td><a href="edit/{{item.id}}" class="btn btn-info">Edit</a></td>
+            <td><a href="delete/{{item.id}}" class="btn btn-danger">Delete</a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+
+</table>
+
+
+</body>
+</html>
