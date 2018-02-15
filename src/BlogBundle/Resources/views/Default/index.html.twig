@@ -1,1 +1,9 @@
-Hello World!
+{{ "Lahlou"|upper }}
+<br>
+{% for item in blogs if item.id !=2 %}
+{{ item.title }}
+    <br>
+
+{% else %}
+    <p> No blog Found</p>
+{% endfor %}
