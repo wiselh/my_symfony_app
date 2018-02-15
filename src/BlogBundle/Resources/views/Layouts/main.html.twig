@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}">
+    {% block stylesheets %}{% endblock %}
+    <style type="text/css" rel="stylesheet">
+        ul li {
+            display: inline-block;
+            margin-right:5px;
+            padding: 10px 20px;
+            background-color: #7DA0B1;
+            border-radius: 4px;
+
+        }
+        ul li a {
+            color: black;
+            padding: 10px 20px;
+            text-decoration: none;
+        }
+        ul li > a:hover {
+            color: white;
+        }
+        ul li:hover {
+            background-color: #444444;
+            border-bottom: 1px solid red;
+        }
+    </style>
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body>
+<h1>Blog/Layouts/main.html.twig</h1>
+{% block header %}
+    <nav>
+        <ul class="list-group-item">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Blogs</a></li>
+            <li><a href="#">Porfolio</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+{% endblock %}
+{% block body %}{% endblock %}
+{% block javascripts %}{% endblock %}
+</body>
+</html>

@@ -1,9 +1,28 @@
-{{ "Lahlou"|upper }}
-<br>
-{% for item in blogs if item.id !=2 %}
-{{ item.title }}
-    <br>
+{% extends '@Blog/Layouts/main.html.twig' %}
+{#{% extends 'base.html.twig' %}#}
 
-{% else %}
-    <p> No blog Found</p>
-{% endfor %}
+{% block title %}Blog Page!{% endblock %}
+{% block stylesheets %}
+    <style>
+
+    </style>
+{% endblock %}
+
+{% block header %}
+    {{ parent() }}
+    <p5>Other Things</p5>
+{% endblock %}
+
+{% block body %}
+
+<h1>Products List</h1>
+    {% for product in products %}
+        {{ include('@Blog/Layouts/article.html.twig') }}
+        <hr>
+    {% endfor %}
+    <img src="{{ asset('assets/images/dn.jpg') }}" width="500px" alt="Death Note">
+{% endblock %}
+
+{% block javascripts %}
+
+{% endblock %}

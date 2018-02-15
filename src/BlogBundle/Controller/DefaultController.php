@@ -15,24 +15,25 @@ class DefaultController extends Controller
      */
     public function indexAction(){
 
-        $blogs =[
+        $products =[
             [
                 'id' => 1,
-                'title' => 'article 1',
-                'content' => 'lorem lorem 1'
+                'name' => 'product 1',
+                'price' => '200Dh'
             ],
             [
                 'id' => 2,
-                'title' => 'article 2',
-                'content' => 'lorem lorem 2'
-             ],
-             [
+                'name' => 'product 2',
+                'price' => '100Dh'
+            ],
+            [
                 'id' => 3,
-                'title' => 'article 3',
-                'content' => 'lorem lorem 3'
+                'name' => 'product 3',
+                'price' => '20Dh'
             ]
+
         ];
 
-        return $this->render('@Blog/Default/index.html.twig',['blogs' => $blogs]);
+        return $this->render('@Blog/Default/index.html.twig',['products' => $products]);
     }
 }
