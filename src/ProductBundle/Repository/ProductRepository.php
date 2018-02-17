@@ -10,4 +10,15 @@ namespace ProductBundle\Repository;
  */
 class ProductRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findMyProduct($id)
+    {
+        $product = $this->getEntityManager()
+            ->createQuery('SELECT a FROM ProductBundle:Product a 
+                WHERE a.id = :id')
+            ->setParameter('id',$id)
+            ->getResult();
+//          ->setMaxResults(1)->getOneOrNullResult(); for one result or none
+//          ->setParameter('title','%'.$title.'%') for string
+        return $product;
+    }
 }

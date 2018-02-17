@@ -44,6 +44,24 @@ class ProductController extends Controller
         ));
 
     }
+
+    /**
+     * @Route("/show/{id}",name="show_special_page")
+     */
+    public function showSpecialProductAction($id){
+
+        $em = $this->getDoctrine()->getManager();
+
+        $repository= $em->getRepository(Product::class);
+        $product = $repository->findMyProduct($id);
+
+
+
+        return $this->render('Products/show.html.twig',array(
+            'products' => $product,
+        ));
+
+    }
      /**
      * @Route("/store",name="save_page")
      * @Method("POST")
