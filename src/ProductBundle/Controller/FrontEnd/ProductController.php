@@ -5,6 +5,7 @@ namespace ProductBundle\Controller\FrontEnd;
 
 use Doctrine\DBAL\Types\FloatType;
 use Doctrine\DBAL\Types\TextType;
+use ProductBundle\Entity\Category;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -38,9 +39,13 @@ class ProductController extends Controller
         $repository = $this->getDoctrine()->getRepository(Product::class);
         $products = $repository->findAll();
 
+        $repository2 = $this->getDoctrine()->getRepository(Category::class);
+        $categories = $repository2->findAll();
+
 
         return $this->render('Products/show.html.twig',array(
             'products' => $products,
+            'categories' => $categories,
         ));
 
     }
@@ -51,13 +56,10 @@ class ProductController extends Controller
     public function showSpecialProductAction($id){
 
         $em = $this->getDoctrine()->getManager();
-
         $repository= $em->getRepository(Product::class);
         $product = $repository->findMyProduct($id);
 
-
-
-        return $this->render('Products/show.html.twig',array(
+        return $this->render('Products/show_Categories.html.twig',array(
             'products' => $product,
         ));
 
@@ -68,17 +70,28 @@ class ProductController extends Controller
      */
     public function SaveProductAction(Request $request){
 
+        // get add request values
         $name = $request->request->get('name');
         $price = $request->request->get('price');
         $description = $request->request->get('description');
+        $category_id = $request->request->get('category');
+
 
         $product = new Product();
 
         $product->setName($name);
         $product->setPrice($price);
         $product->setDescription($description);
+        $product->setCreateAt(new \DateTime("now"));
 
+        // get the category Object
+        $repository = $this->getDoctrine()->getRepository(Category::class);
+        $category = $repository->find($category_id);
 
+        // set category to the product
+        $product->setCategory($category);
+
+        // insert to database
          $em = $this->getDoctrine()->getManager();
          $em->persist($product);
          $em->flush();

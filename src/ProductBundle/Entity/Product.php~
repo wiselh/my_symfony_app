@@ -46,10 +46,21 @@ class Product
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="createAt", type="datetime", nullable=true)
+     * @ORM\Column(name="createAt", type="datetime")
      */
     private $createAt;
 
+    public function _construct(){
+
+        $this->createAt = new \DateTime("now");
+    }
+
+    /**
+     * @var int
+     * @ORM\ManyToOne(targetEntity="Category")
+     * @ORM\JoinColumn(name="category_id",referencedColumnName="id")
+     */
+    private $category;
 
     /**
      * Get id
@@ -142,8 +153,7 @@ class Product
      */
     public function setCreateAt($createAt)
     {
-        $date = new \DateTime("now");
-        $this->createAt = $date;
+        $this->createAt = $createAt;
 
         return $this;
     }
