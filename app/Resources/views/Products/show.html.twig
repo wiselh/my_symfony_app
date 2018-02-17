@@ -16,6 +16,7 @@
     <th class="active">Price</th>
     <th>Description</th>
     <th>Category</th>
+    <th>Picture</th>
     <th>CreatedAt</th>
     <th>Edit - Delete Product</th>
     </thead>
@@ -31,6 +32,7 @@
                 <option value="{{ item.id }}">{{ item.name }}</option>
                 {% endfor %}
             </select></td>
+        <td><input type="file" name="picture" id="" class=""></td>
         <td colspan="2"><input type="submit" name="submit" id="" class="btn btn-success"></td>
     </tr>
     </form>
@@ -40,7 +42,8 @@
             <td  class="active">{{ item.price }}</td>
             <td>{{ item.description }}</td>
             <td>{{ item.category }}</td>
-            <td>{{ item.createAt|date('Y-m-d')}} | {{  item.createAt|date('H:i:s') }}</td>
+            <td><img src=" " width="100px" height="50px" alt=""></td>
+            <td>{{ item.createdAt|date('Y-m-d')}} | {{  item.createdAt|date('H:i:s') }}</td>
             <td><a href="edit/{{item.id}}" class="btn btn-info">Edit</a>
             <a href="delete/{{item.id}}" class="btn btn-danger">Delete</a></td>
         </tr>

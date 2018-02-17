@@ -75,6 +75,7 @@ class ProductController extends Controller
         $price = $request->request->get('price');
         $description = $request->request->get('description');
         $category_id = $request->request->get('category');
+//        $picture_path = $request->request->get('picture');
 
 
         $product = new Product();
@@ -82,7 +83,7 @@ class ProductController extends Controller
         $product->setName($name);
         $product->setPrice($price);
         $product->setDescription($description);
-        $product->setCreateAt(new \DateTime("now"));
+        $product->setCreatedAt(new \DateTime("now"));
 
         // get the category Object
         $repository = $this->getDoctrine()->getRepository(Category::class);
@@ -91,12 +92,32 @@ class ProductController extends Controller
         // set category to the product
         $product->setCategory($category);
 
-        // insert to database
-         $em = $this->getDoctrine()->getManager();
-         $em->persist($product);
-         $em->flush();
 
-        return $this->redirectToRoute('show_page');
+//        $file=$picture_path;
+//        $filename =md5(uniqid()).'.'.$file->guessExtension();
+//        $file->move($this->getParameter('image_directory'),$filename);
+
+
+
+
+//        $file = $request->files->get('picture');
+//
+//        $ext = $file->guessExtension();
+//        $file_name = time() . '.' . $ext;
+//        $path_of_file = 'assets/images';
+//        $file->move($path_of_file, $file_name);
+//
+//        var_dump($file);
+//        die();
+
+
+
+        // insert to database
+//         $em = $this->getDoctrine()->getManager();
+//         $em->persist($product);
+//         $em->flush();
+//
+//        return $this->redirectToRoute('show_page');
 
     }
 

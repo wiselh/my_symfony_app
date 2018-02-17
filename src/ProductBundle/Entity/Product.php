@@ -46,21 +46,26 @@ class Product
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="createAt", type="datetime")
+     * @ORM\Column(name="createdAt", type="datetime")
      */
-    private $createAt;
+    private $createdAt;
 
     public function _construct(){
 
-        $this->createAt = new \DateTime("now");
+        $this->createdAt = new \DateTime("now");
     }
 
     /**
-     * @var int
      * @ORM\ManyToOne(targetEntity="Category")
      * @ORM\JoinColumn(name="category_id",referencedColumnName="id")
      */
     private $category;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Picture")
+     * @ORM\JoinColumn(name="picture_id",referencedColumnName="id")
+     */
+    private $picture;
 
     /**
      * Get id
@@ -145,27 +150,27 @@ class Product
     }
 
     /**
-     * Set createAt
+     * Set createdAt
      *
-     * @param \DateTime $createAt
+     * @param \DateTime $createdAt
      *
      * @return Product
      */
-    public function setCreateAt($createAt)
+    public function setCreatedAt($createdAt)
     {
-        $this->createAt = $createAt;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
 
     /**
-     * Get createAt
+     * Get createdAt
      *
      * @return \DateTime
      */
-    public function getCreateAt()
+    public function getCreatedAt()
     {
-        return $this->createAt;
+        return $this->createdAt;
     }
 
     /**
@@ -190,5 +195,29 @@ class Product
     public function getCategory()
     {
         return $this->category;
+    }
+
+    /**
+     * Set picture
+     *
+     * @param \ProductBundle\Entity\Picture $picture
+     *
+     * @return Product
+     */
+    public function setPicture(\ProductBundle\Entity\Picture $picture = null)
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }
+
+    /**
+     * Get picture
+     *
+     * @return \ProductBundle\Entity\Picture
+     */
+    public function getPicture()
+    {
+        return $this->picture;
     }
 }
