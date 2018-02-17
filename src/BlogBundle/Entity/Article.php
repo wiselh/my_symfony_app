@@ -5,12 +5,12 @@ namespace BlogBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Product
+ * Article
  *
- * @ORM\Table(name="product")
- * @ORM\Entity(repositoryClass="BlogBundle\Repository\ProductRepository")
+ * @ORM\Table(name="article")
+ * @ORM\Entity(repositoryClass="BlogBundle\Repository\ArticleRepository")
  */
-class Product
+class Article
 {
     /**
      * @var int
@@ -24,16 +24,9 @@ class Product
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="title", type="string", length=255)
      */
-    private $name;
-
-    /**
-     * @var float
-     *
-     * @ORM\Column(name="price", type="float")
-     */
-    private $price;
+    private $title;
 
     /**
      * @var string
@@ -49,6 +42,13 @@ class Product
      */
     private $createAt;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updateAt", type="datetime")
+     */
+    private $updateAt;
+
 
     /**
      * Get id
@@ -61,51 +61,27 @@ class Product
     }
 
     /**
-     * Set name
+     * Set title
      *
-     * @param string $name
+     * @param string $title
      *
-     * @return Product
+     * @return Article
      */
-    public function setName($name)
+    public function setTitle($title)
     {
-        $this->name = $name;
+        $this->title = $title;
 
         return $this;
     }
 
     /**
-     * Get name
+     * Get title
      *
      * @return string
      */
-    public function getName()
+    public function getTitle()
     {
-        return $this->name;
-    }
-
-    /**
-     * Set price
-     *
-     * @param float $price
-     *
-     * @return Product
-     */
-    public function setPrice($price)
-    {
-        $this->price = $price;
-
-        return $this;
-    }
-
-    /**
-     * Get price
-     *
-     * @return float
-     */
-    public function getPrice()
-    {
-        return $this->price;
+        return $this->title;
     }
 
     /**
@@ -113,7 +89,7 @@ class Product
      *
      * @param string $description
      *
-     * @return Product
+     * @return Article
      */
     public function setDescription($description)
     {
@@ -137,7 +113,7 @@ class Product
      *
      * @param \DateTime $createAt
      *
-     * @return Product
+     * @return Article
      */
     public function setCreateAt($createAt)
     {
@@ -154,5 +130,29 @@ class Product
     public function getCreateAt()
     {
         return $this->createAt;
+    }
+
+    /**
+     * Set updateAt
+     *
+     * @param \DateTime $updateAt
+     *
+     * @return Article
+     */
+    public function setUpdateAt($updateAt)
+    {
+        $this->updateAt = $updateAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updateAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdateAt()
+    {
+        return $this->updateAt;
     }
 }

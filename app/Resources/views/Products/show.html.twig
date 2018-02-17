@@ -15,8 +15,8 @@
     <th>Name</th>
     <th class="active">Price</th>
     <th>Description</th>
-    <th>Edit Product</th>
-    <th>Delete Product</th>
+    <th>CreatedAt</th>
+    <th>Edit - Delete Product</th>
     </thead>
     <tbody>
     <form action="store" method="post" name="myform">
@@ -32,8 +32,9 @@
             <td>{{ item.name }}</td>
             <td  class="active">{{ item.price }}</td>
             <td>{{ item.description }}</td>
-            <td><a href="edit/{{item.id}}" class="btn btn-info">Edit</a></td>
-            <td><a href="delete/{{item.id}}" class="btn btn-danger">Delete</a></td>
+            <td>{{ item.createAt|date('Y-m-d')}} | {{  item.createAt|date('H:i:s') }}</td>
+            <td><a href="edit/{{item.id}}" class="btn btn-info">Edit</a>
+            <a href="delete/{{item.id}}" class="btn btn-danger">Delete</a></td>
         </tr>
     {% endfor %}
     </tbody>

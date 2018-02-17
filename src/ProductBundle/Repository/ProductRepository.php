@@ -1,6 +1,6 @@
 <?php
 
-namespace ProductBundle\Repository\Entity;
+namespace ProductBundle\Repository;
 
 /**
  * ProductRepository

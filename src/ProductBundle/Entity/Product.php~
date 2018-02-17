@@ -1,14 +1,14 @@
 <?php
 
-namespace BlogBundle\Entity;
+namespace ProductBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Product
  *
- * @ORM\Table(name="product")
- * @ORM\Entity(repositoryClass="BlogBundle\Repository\ProductRepository")
+ * @ORM\Table(name="entity_product")
+ * @ORM\Entity(repositoryClass="ProductBundle\Repository\ProductRepository")
  */
 class Product
 {
@@ -29,23 +29,24 @@ class Product
     private $name;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", length=255)
+     */
+    private $description;
+
+    /**
      * @var float
      *
      * @ORM\Column(name="price", type="float")
      */
     private $price;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="description", type="text")
-     */
-    private $description;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="createAt", type="datetime")
+     * @ORM\Column(name="createAt", type="datetime", nullable=true)
      */
     private $createAt;
 
@@ -85,30 +86,6 @@ class Product
     }
 
     /**
-     * Set price
-     *
-     * @param float $price
-     *
-     * @return Product
-     */
-    public function setPrice($price)
-    {
-        $this->price = $price;
-
-        return $this;
-    }
-
-    /**
-     * Get price
-     *
-     * @return float
-     */
-    public function getPrice()
-    {
-        return $this->price;
-    }
-
-    /**
      * Set description
      *
      * @param string $description
@@ -133,6 +110,30 @@ class Product
     }
 
     /**
+     * Set price
+     *
+     * @param float $price
+     *
+     * @return Product
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get price
+     *
+     * @return float
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
      * Set createAt
      *
      * @param \DateTime $createAt
@@ -141,7 +142,8 @@ class Product
      */
     public function setCreateAt($createAt)
     {
-        $this->createAt = getdate();
+        $date = new \DateTime("now");
+        $this->createAt = $date;
 
         return $this;
     }

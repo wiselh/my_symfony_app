@@ -1,6 +1,6 @@
 <?php
 
-namespace ProductBundle\Entity\Entity;
+namespace ProductBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Product
  *
  * @ORM\Table(name="entity_product")
- * @ORM\Entity(repositoryClass="ProductBundle\Repository\Entity\ProductRepository")
+ * @ORM\Entity(repositoryClass="ProductBundle\Repository\ProductRepository")
  */
 class Product
 {
@@ -42,6 +42,18 @@ class Product
      */
     private $price;
 
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="createAt", type="datetime")
+     */
+    private $createAt;
+
+    public function _construct(){
+
+        $this->createAt = new \DateTime("now");
+    }
 
     /**
      * Get id
@@ -124,5 +136,28 @@ class Product
     {
         return $this->price;
     }
-}
 
+    /**
+     * Set createAt
+     *
+     * @param \DateTime $createAt
+     *
+     * @return Product
+     */
+    public function setCreateAt($createAt)
+    {
+        $this->createAt = $createAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createAt
+     *
+     * @return \DateTime
+     */
+    public function getCreateAt()
+    {
+        return $this->createAt;
+    }
+}

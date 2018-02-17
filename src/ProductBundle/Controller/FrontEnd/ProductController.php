@@ -9,13 +9,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
-use ProductBundle\Entity\Entity\Product;
+use ProductBundle\Entity\Product;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Validator\Constraints\DateTime;
+
 //use Doctrine\ORM\EntityManagerInterface;
 
 class ProductController extends Controller
@@ -35,6 +37,7 @@ class ProductController extends Controller
 
         $repository = $this->getDoctrine()->getRepository(Product::class);
         $products = $repository->findAll();
+
 
         return $this->render('Products/show.html.twig',array(
             'products' => $products,
@@ -56,6 +59,7 @@ class ProductController extends Controller
         $product->setName($name);
         $product->setPrice($price);
         $product->setDescription($description);
+
 
          $em = $this->getDoctrine()->getManager();
          $em->persist($product);
