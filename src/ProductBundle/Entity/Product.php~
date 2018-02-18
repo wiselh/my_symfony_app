@@ -3,11 +3,12 @@
 namespace ProductBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Product
  *
- * @ORM\Table(name="entity_product")
+ * @ORM\Table(name="product")
  * @ORM\Entity(repositoryClass="ProductBundle\Repository\ProductRepository")
  */
 class Product
@@ -62,10 +63,54 @@ class Product
     private $category;
 
     /**
-     * @ORM\OneToOne(targetEntity="Picture")
-     * @ORM\JoinColumn(name="picture_id",referencedColumnName="id")
+     * @var string
+     *
+     * @ORM\Column(name="image", type="string", length=255,nullable=true)
      */
-    private $picture;
+    public $image;
+
+//    /**
+//     * @Assert/File(maxSize="500k")
+//     */
+//    public $file;
+
+    public function getWebPack(){
+
+//      return null === $this->$image ?  null : $this->getUploadDir.'/'.$this->$image;
+        return null === $this->image ?  null : '/assets/images/'.$this->image;
+    }
+    protected function getUploadRootDir(){
+        return __DIR__.'../../../../web/assets/images';
+    }
+    public function uploadImage(){
+        $this->file->move($this->getUploadRootDir(),$this->file->getClientOriginalName());
+        $this->image=$this->file->getClientOriginalName();
+        $this->file=null;
+    }
+
+    /**
+     * Get image
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Set image
+     * @param string $image
+     * @return Product
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+
+
 
     /**
      * Get id
@@ -197,27 +242,4 @@ class Product
         return $this->category;
     }
 
-    /**
-     * Set picture
-     *
-     * @param \ProductBundle\Entity\Picture $picture
-     *
-     * @return Product
-     */
-    public function setPicture(\ProductBundle\Entity\Picture $picture = null)
-    {
-        $this->picture = $picture;
-
-        return $this;
-    }
-
-    /**
-     * Get picture
-     *
-     * @return \ProductBundle\Entity\Picture
-     */
-    public function getPicture()
-    {
-        return $this->picture;
-    }
 }

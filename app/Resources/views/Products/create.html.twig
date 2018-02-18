@@ -10,24 +10,17 @@
 </head>
 <body>
 <h1 style="color: red">Create Product</h1>
-<form action="store" method="post" name="myform">
+{{ form_start(form) }}
+
     <div class="form-group" style="width: 500px;margin: auto">
         <div class="form-controller">
-            <label for="">Name</label>
-            <input type="text" name="name" id="" class="form-control">
+            {{ form_widget(form) }}
         </div>
-        <div class="form-controller">
-            <label for="">Price</label>
-            <input type="text" name="price" id="" class="form-control">
-        </div>
-        <div class="form-controller">
-            <label for="">Description</label>
-            <input type="text" name="description" id="" class="form-control">
-        </div><br>
         <div class="form-controller">
             <input type="submit" name="submit" id="" class="btn btn-success btn-lg">
         </div>
     </div>
+{{ form_end(form) }}
 </form>
 </body>
 </html>

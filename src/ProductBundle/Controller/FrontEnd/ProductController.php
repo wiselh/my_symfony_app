@@ -3,8 +3,9 @@
 namespace ProductBundle\Controller\FrontEnd;
 
 
-use Doctrine\DBAL\Types\FloatType;
-use Doctrine\DBAL\Types\TextType;
+use ProductBundle\Form\ProductType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use ProductBundle\Entity\Category;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -15,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\Constraints\DateTime;
@@ -26,9 +28,23 @@ class ProductController extends Controller
     /**
      * @Route("/create",name="create_page")
      */
-    public function createProductAction(){
+    public function createProductAction(Request $request){
+        $product = new Product();
+        $form =$this->createForm(ProductType::class,$product);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()){
 
-        return $this->render('Products/create.html.twig');
+             $em = $this->getDoctrine()->getManager();
+             $product->uploadImage();
+             $em->persist($product);
+             $em->flush();
+
+            return $this->redirectToRoute('show_page');
+        }
+
+        return $this->render('Products/create.html.twig',array(
+            'form'=>$form->createView()
+        ));
     }
 
     /**
@@ -57,7 +73,7 @@ class ProductController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $repository= $em->getRepository(Product::class);
-        $product = $repository->findMyProduct($id);
+        $product = $repository->find($id);
 
         return $this->render('Products/show_Categories.html.twig',array(
             'products' => $product,

@@ -42,7 +42,7 @@
             <td  class="active">{{ item.price }}</td>
             <td>{{ item.description }}</td>
             <td>{{ item.category }}</td>
-            <td><img src=" " width="100px" height="50px" alt=""></td>
+            <td><img src="{{ asset('assets/images/') }}{{ item.image }}" width="100px" height="50px" alt=""></td>
             <td>{{ item.createdAt|date('Y-m-d')}} | {{  item.createdAt|date('H:i:s') }}</td>
             <td><a href="edit/{{item.id}}" class="btn btn-info">Edit</a>
             <a href="delete/{{item.id}}" class="btn btn-danger">Delete</a></td>

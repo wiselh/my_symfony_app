@@ -118,3 +118,4 @@ class Picture
         return (string) $this->getPath();
     }
 }
+
