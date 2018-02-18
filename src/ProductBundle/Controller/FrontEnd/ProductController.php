@@ -29,6 +29,7 @@ class ProductController extends Controller
      * @Route("/create",name="create_page")
      */
     public function createProductAction(Request $request){
+        //  Upload Controller
         $product = new Product();
         $form =$this->createForm(ProductType::class,$product);
         $form->handleRequest($request);

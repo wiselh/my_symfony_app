@@ -92,7 +92,7 @@ class Product
     {
         $this->file = $file;
     }
-
+//    For Upload
     public function getWebPack(){
 
 //      return null === $this->$image ?  null : $this->getUploadDir.'/'.$this->$image;
@@ -106,6 +106,7 @@ class Product
         $this->image=$this->file->getClientOriginalName();
         $this->file=null;
     }
+//    End Upload
 
     /**
      * Get image
@@ -127,9 +128,6 @@ class Product
 
         return $this;
     }
-
-
-
 
     /**
      * Get id
