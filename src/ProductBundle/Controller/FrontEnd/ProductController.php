@@ -36,6 +36,7 @@ class ProductController extends Controller
         if ($form->isSubmitted()){
 
              $em = $this->getDoctrine()->getManager();
+             $product->setCreatedAt(new \DateTime("now"));
              $product->uploadImage();
              $em->persist($product);
              $em->flush();

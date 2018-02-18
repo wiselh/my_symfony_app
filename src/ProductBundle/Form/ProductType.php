@@ -2,10 +2,14 @@
 
 namespace ProductBundle\Form;
 
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Collection;
 
 class ProductType extends AbstractType
 {
@@ -16,12 +20,12 @@ class ProductType extends AbstractType
     {
 //        buildForm
 
-        $builder->add('name')
-                ->add('description')
-                ->add('price')
-                ->add('createdAt')
-                ->add('category')
-                ->add('file');
+        $builder->add('name', TextType::class, array('label' => 'Name', 'required' => true))
+                ->add('description', TextType::class, array('label' => 'Description', 'required' => true))
+                ->add('price',NumberType::class, array('label' => 'Price', 'required' => true))
+                ->add('category',null, array('label' => 'Category', 'required' => true))
+                ->add('file',null, array('label' => 'Image', 'required' => true))
+                ->add('save', SubmitType::class, array('label' => 'Create'));
     }/**
      * {@inheritdoc}
      */
