@@ -21,28 +21,28 @@
     <th>Edit - Delete Product</th>
     </thead>
     <tbody>
-    <form action="store" method="post" name="myform">
+
     <tr class="form-group">
-        <td> <input type="text" name="name" id="" class="form-control"></td>
-        <td><input type="text" name="price" id="" class="form-control"></td>
-        <td><input type="text" name="description" id="" class="form-control"></td>
-        <td>
-            <select name="category" class="form-control" >
-                {% for item in categories %}
-                <option value="{{ item.id }}">{{ item.name }}</option>
-                {% endfor %}
-            </select></td>
-        <td><input type="file" name="picture" id="" class=""></td>
-        <td colspan="2"><input type="submit" name="submit" id="" class="btn btn-success"></td>
+        {{ form_start(form) }}
+        <td>{{ form_widget(form.name, { 'attr': {'class': 'form-control'} }) }}</td>
+        <td>{{ form_widget(form.price, { 'attr': {'class': 'form-control'} }) }}</td>
+        <td>{{ form_widget(form.description, { 'attr': {'class': 'form-control'} }) }}</td>
+        <td>{{ form_widget(form.category, { 'attr': {'class': 'form-control'} }) }}</td>
+        <td>{{ form_widget(form.file, { 'attr': {'class': ''} }) }}
+            <span style="color: red">* 2Mb maximum</span></td>
+
+        <td colspan="2">{{ form_widget(form.save, { 'attr': {'class': 'btn btn-success'} }) }}</td>
+        {{ form_end(form) }}
     </tr>
-    </form>
+
     {% for item in products %}
         <tr>
             <td>{{ item.name }}</td>
             <td  class="active">{{ item.price }}</td>
             <td>{{ item.description }}</td>
             <td>{{ item.category }}</td>
-            <td><img src="{{ asset('assets/images/') }}{{ item.image }}" width="100px" height="50px" alt=""></td>
+            <td><img src="{{ asset(item.getWebPack()) }}" width="100px" height="50px" alt=""></td>
+
             <td>{{ item.createdAt|date('Y-m-d')}} | {{  item.createdAt|date('H:i:s') }}</td>
             <td><a href="edit/{{item.id}}" class="btn btn-info">Edit</a>
             <a href="delete/{{item.id}}" class="btn btn-danger">Delete</a></td>

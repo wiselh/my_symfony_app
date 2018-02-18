@@ -26,9 +26,13 @@ use Symfony\Component\Validator\Constraints\DateTime;
 class ProductController extends Controller
 {
     /**
-     * @Route("/create",name="create_page")
+     * @Route("/show",name="home_page")
      */
     public function createProductAction(Request $request){
+
+        $repository = $this->getDoctrine()->getRepository(Product::class);
+        $products = $repository->findAll();
+
         //  Upload Controller
         $product = new Product();
         $form =$this->createForm(ProductType::class,$product);
@@ -41,19 +45,21 @@ class ProductController extends Controller
              $em->persist($product);
              $em->flush();
 
-            return $this->redirectToRoute('show_page');
+            return $this->redirectToRoute('home_page');
         }
 
-        return $this->render('Products/create.html.twig',array(
+        return $this->render('Products/show.html.twig',array(
+            'products' => $products,
             'form'=>$form->createView()
         ));
     }
 
     /**
-     * @Route("/show",name="show_page")
+     * @Route("/old_method",name="show_page")
      */
     public function showProductAction(){
 
+        // old method
         $repository = $this->getDoctrine()->getRepository(Product::class);
         $products = $repository->findAll();
 
@@ -173,7 +179,7 @@ class ProductController extends Controller
         $product = $em->getRepository(Product::class)->find($id);
         $em->remove($product);
         $em->flush();
-        return $this->redirectToRoute('show_page');
+        return $this->redirectToRoute('home_page');
 
     }
 
@@ -196,7 +202,7 @@ class ProductController extends Controller
         $product->setDescription($description);
         $em->flush();
 
-        return $this->redirectToRoute('show_page');
+        return $this->redirectToRoute('home_page');
 
     }
 

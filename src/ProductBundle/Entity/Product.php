@@ -95,15 +95,30 @@ class Product
 //    For Upload
     public function getWebPack(){
 
-//      return null === $this->$image ?  null : $this->getUploadDir.'/'.$this->$image;
-        return null === $this->image ?  null : '/assets/images/'.$this->image;
+      return null === $this->image ?  null : $this->getUploadDir().'/'.$this->image;
+//        return null === $this->image ?  null : '/assets/images/'.$this->image;
+    }
+    public function getUploadDir(){
+
+        if ($this->category=='Phone')
+            return'assets/images/Phone';
+        else if ($this->category=='TV')
+            return 'assets/images/TV';
+        else
+            return 'assets/images/Laptop';
     }
     protected function getUploadRootDir(){
-        return __DIR__.'../../../../web/assets/images';
+
+        return __DIR__.'../../../../web/'.$this->getUploadDir();
+//        return __DIR__.'../../../../web/assets/images/Phone';
     }
     public function uploadImage(){
-        $this->file->move($this->getUploadRootDir(),$this->file->getClientOriginalName());
-        $this->image=$this->file->getClientOriginalName();
+//        die(var_dump($this->file->getExtension().'  '.$this->file->guessExtension()));
+        $FileNameInDir = $this->name.'-'.((new \DateTime('now'))->format('Y-m-d')).'.'.$this->file->guessExtension();
+        $this->file->move($this->getUploadRootDir(),$FileNameInDir);
+        $this->image=$FileNameInDir;
+//        $this->file->move($this->getUploadRootDir(),$this->file->getClientOriginalName());
+//        $this->image=$this->file->getClientOriginalName();
         $this->file=null;
     }
 //    End Upload
