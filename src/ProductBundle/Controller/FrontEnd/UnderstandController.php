@@ -10,6 +10,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 
 class UnderstandController extends Controller
@@ -41,5 +43,32 @@ class UnderstandController extends Controller
         return new Response('Page Slug '.$slug);
     }
 
+    /**
+     * @Route("/myform",name="myform_page")
+     */
+    public function newAction(Request $request)
+    {
+        // createFormBuilder is a shortcut to get the "form factory"
+        // and then call "createBuilder()" on it
+
+        $form = $this->createFormBuilder()
+            ->add('name', TextType::class)
+            ->add('image', FileType::class)
+            ->getForm();
+
+        $request = Request::createFromGlobals();
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            var_dump($data);
+            die();
+        }
+
+
+        return $this->render('Products/myform.html.twig', array(
+            'form' => $form->createView(),
+        ));
+    }
 
 }
