@@ -4,8 +4,11 @@ namespace UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\BrowserKit\Request;
+
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+
+
 
 
 class UserController extends Controller
@@ -13,7 +16,7 @@ class UserController extends Controller
     /**
      * @Route("/login" ,name="login")
      */
-    public function indexAction(Request $request, AuthenticationUtils $authenticationUtils)
+    public function loginAction(Request $request, AuthenticationUtils $authenticationUtils)
     {
         $errors = $authenticationUtils->getLastAuthenticationError();
         $lastUserName = $authenticationUtils->getLastUsername();
@@ -22,4 +25,9 @@ class UserController extends Controller
             'username'=>$lastUserName,
         ));
     }
+
+    /**
+     * @Route("/logout" ,name="logout")
+     */
+    public function logoutAction(){}
 }

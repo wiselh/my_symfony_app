@@ -19,10 +19,12 @@
             <button class="btn-info btn pull-right">Login</button>
             </div>
         </form>
-        {% if errors %}
-            <div class="alert alert-danger"> {{ error.messageKey }}</div>
-        {% endif %}
     </div>
+    {% if errors %}
+        <div class="alert alert-danger">
+            {{ errors.messageKey }}
+        </div>
+    {% endif %}
 </div>
 
 {% endblock %}

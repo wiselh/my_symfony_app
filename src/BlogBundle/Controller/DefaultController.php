@@ -36,4 +36,11 @@ class DefaultController extends Controller
 
         return $this->render('@Blog/Default/index.html.twig',['products' => $products]);
     }
+    /**
+     * @Route("/",name="home2_page")
+     */
+    public function homeAction(){
+
+        return $this->render('@Blog/Default/home.html.twig');
+    }
 }

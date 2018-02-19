@@ -24,3 +24,11 @@ security:
             form_login:
                 login_path: login
                 check_path: login
+
+            logout:
+                path: /logout
+                target: /
+
+    access_control:
+        - { path: ^/login , roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/show , roles: IS_AUTHENTICATED_FULLY }
