@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+
+{% block title %}UserBundle:Register:register{% endblock %}
+
+{% block body %}
+<h1>Welcome to the Register:register page</h1>
+    <div class="panel-group panel">
+        <div class="panel-heading">
+            <h3>Register</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                {{ form_start(register_form) }}
+                    {#{{ form_label(register_form.username)}}#}
+                    {#{{ form_widget(register_form.username, { 'attr': {'class': 'form-control'} }) }}#}
+                    {#{{ form_label(form.email)}}#}
+                    {#{{ form_widget(form.email, { 'attr': {'class': 'form-control'} }) }}#}
+                    {#{{ form_label(form.password)}}#}
+                    {#{{ form_widget(form.password, { 'attr': {'class': 'form-control'} }) }}#}
+                    {#{{ form_widget(form.save, { 'attr': {'class': 'btn btn-success'} }) }}#}
+                {{ form_end(register_form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

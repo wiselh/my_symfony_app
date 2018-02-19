@@ -26,7 +26,7 @@ class ProductType extends AbstractType
                 ->add('price',NumberType::class, array('label' => 'Price', 'required' => true))
                 ->add('category',null, array('label' => 'Category', 'required' => true))
                 ->add('file',null, array('label' => 'Image', 'required' => true))
-                ->add('save', SubmitType::class, array('label' => 'Create'));
+                ->add('save', SubmitType::class);
     }/**
      * {@inheritdoc}
      */

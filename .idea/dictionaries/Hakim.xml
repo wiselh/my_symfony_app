@@ -2,6 +2,8 @@
   <dictionary name="Hakim">
     <words>
       <w>prenom</w>
+      <w>productbundle</w>
+      <w>userbundle</w>
     </words>
   </dictionary>
 </component>
