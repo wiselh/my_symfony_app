@@ -1,1 +1,34 @@
-Hello World!
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Abdelhakim Lahlou</title>
+  <meta name="description" content="this is my website resume">
+  <meta name="author" content="">
+
+  {{ include('@Website/Layouts/head.html.twig') }}
+
+</head>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+{{ include('@Website/Layouts/header.html.twig') }}
+
+{{ include('@Website/Layouts/content.html.twig') }}
+
+{{ include('@Website/Layouts/footer.html.twig') }}
+
+<script type="text/javascript" src="{{ asset('assets/website/js/jquery.1.11.1.js')}}"></script>
+<script type="text/javascript" src="{{ asset('assets/website/js/bootstrap.js')}}"></script>
+<script type="text/javascript" src="{{ asset('assets/website/js/SmoothScroll.js')}}"></script>
+<script type="text/javascript" src="{{ asset('assets/website/js/easypiechart.js')}}"></script>
+<script type="text/javascript" src="{{ asset('assets/website/js/jquery.prettyPhoto.js')}}"></script>
+<script type="text/javascript" src="{{ asset('assets/website/js/jquery.isotope.js')}}"></script>
+<script type="text/javascript" src="{{ asset('assets/website/js/jquery.counterup.js')}}"></script>
+<script type="text/javascript" src="{{ asset('assets/website/js/waypoints.js')}}"></script>
+<script type="text/javascript" src="{{ asset('assets/website/js/jqBootstrapValidation.js')}}"></script>
+<script type="text/javascript" src="{{ asset('assets/website/js/contact_me.js')}}"></script>
+<script type="text/javascript" src="{{ asset('assets/website/js/main.js')}}"></script>
+
+</body>
+</html>

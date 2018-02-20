@@ -12,7 +12,7 @@ class DefaultController extends Controller
      */
     public function tstsAction()
     {
-        return $this->render('@Website\Layouts\template.html.twig');
+        return $this->render('@Website\Default\index.html.twig');
     }
 
 }
