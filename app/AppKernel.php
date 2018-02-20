@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new BlogBundle\BlogBundle(),
             new UserBundle\UserBundle(),
             new \Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
+            new WebsiteBundle\WebsiteBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
